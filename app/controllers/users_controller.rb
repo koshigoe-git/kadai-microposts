@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  #index,showアクションの前は必ずログイン要求（Appコントローラーで定義）
+  before_action :require_user_logged_in, only: [:index, :show]
+  
   def index #一覧ページでのメソッド（定義）
   #page(params[:page]).per(25):ページネーションを適用
     @users = User.order(id: :desc).page(params[:page]).per(25)
