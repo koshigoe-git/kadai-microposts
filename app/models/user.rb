@@ -10,4 +10,6 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   #暗号化するメソッド
   has_secure_password
+  
+  has_many :microposts
 end

@@ -9,8 +9,10 @@ class UsersController < ApplicationController
 
   def show #詳細ページでのメソッド（定義）
     @user = User.find(params[:id])
+    @microposts = @user.microposts.order(id: :desc).page(params[:page])
+    counts(@user)
   end
-
+  
   def new #新規ページでのメソッド（定義）
     @user = User.new
   end

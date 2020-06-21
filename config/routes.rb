@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   delete "logout", to: "sessions#destroy"
   #signupのURLからusers(controller)に行き、newアクションを動かす
   get "signup" => "users#new"
-  #resourceは一覧、詳細、新規、保存のコントローラーのみ
+  #usersコントローラーのresourceは一覧、詳細、新規、保存のコントローラーのみ
   resources :users, only: [:index, :show, :new, :create]
-
+  #micropostsコントローラーのresourcesは作成、削除のコントローラーのみ
+  resources :microposts, only: [:create, :destroy]
 end
