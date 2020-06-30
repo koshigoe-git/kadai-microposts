@@ -19,7 +19,12 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  #this method is used to count to numbers of microposts, followings,followers
+  #displayed to view page
+  #ApplicationControllerに実装することで全てのコントローラでcounts(user)が使用可。
   def counts(user)
     @count_microposts = user.microposts.count
+    @count_followings = user.followings.count
+    @count_followers = user.followers.count
   end
 end

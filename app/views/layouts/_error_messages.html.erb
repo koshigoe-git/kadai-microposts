@@ -1,9 +1,16 @@
+<!-- validatesによって検証に引っかかると、自動的にmodel.errors変数にエラー内容が格納される-->
+<!-- View 側でmodel.errorsがあるか確認し、あれば表示すれば良い。-->
+<!-- また、model.errors と複数形で書いてある通り、複数のエラーに対応可能-->
+
+<!-- if message.errors.any? でバリデーションエラーがあるかを確認し、あれば表示する-->
 <% if model.errors.any? %>
   <div id="error_explanation" class="alert alert-warning">
     <ul class="mb-0">
+      <!--該当しているエラーを全て表示させる-->
       <% model.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
+<!--バリデーション機能とerrorsメソッドはActiveRecord標準のもので、どのmodelクラスでも使える。>

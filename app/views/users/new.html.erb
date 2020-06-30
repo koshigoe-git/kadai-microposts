@@ -1,3 +1,4 @@
+<!-- 新規登録時 -->
 <div class="text-center">
   <h1>Sign up</h1>
 </div>
@@ -5,11 +6,19 @@
 <div class="row">
   <div class="col-sm-6 offset-sm-3">
 
+    <!-- form_withタグはhtmlでいう<form>と一緒-->
+    <!-- (model: @user) :users_controllerのnewアクションで用意した@user = User.newを使用し
+    フォームを作成する明示 -->
     <%= form_with(model: @user, local: true) do |f| %>
       <%= render "layouts/error_messages", model: f.object %>
 
+      <!-- フォームの入力欄は、form_with ブロックの中に記述する
+      <!-- f.label, f.text_field でカラムを指定して、@messageの中のどのカラムに対する入力欄なのかを明示-->
       <div class="form-group">
+        <!--:nameは対象カラムを指定、"Name"はブラウザ表示名-->
+        <!-- f.labelはただの項目名 -->
         <%= f.label :name, "Name" %>
+        <!-- f.text.fieldは入力した文字が:nameのカラムに入る -->
         <%= f.text_field :name, class: "form-control" %>
       </div>
 
@@ -27,8 +36,12 @@
         <%= f.label :password_confirmation, "Confirmation" %>
         <%= f.password_field :password_confirmation, class: "form-control" %>
       </div>
-
+      <!-- 最後に、f.submit で送信ボタンを生成,自動でcreateアクションへ移動してくれる -->
+      <!-- （何か情報を持っているときは自動でupdateアクションとなる） -->
+      <!-- "Sign up"は表示名 -->
       <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>
+    
+    <!-- endはhtmlでいう</form>の役割 -->
     <% end %>
   </div>
 </div>

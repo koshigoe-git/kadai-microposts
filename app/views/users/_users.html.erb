@@ -11,9 +11,11 @@
         <img class="mr-2 rounded" src="<%= gravatar_url(user, { size: 50 }) %>" alt="">
         <div class="media-body">
           <div>
+            <!--usersテーブルの各userのnameを表示-->
             <%= user.name %>
           </div>
           <div>
+            <!-- route作成時に同時生成されたパスメソッドuser_path(user)でusers#showに移動 -->
             <p><%= link_to "View profile", user_path(user) %></p>
           </div>
         </div>

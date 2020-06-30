@@ -17,6 +17,9 @@
   <div class="center jumbotron">
     <div class="text-center">
       <h1>Welcome to the Microposts</h1>
+      <!-- link_to "表示名","リンク先"という意味 -->
+      <!-- リンク先を記述する際、必ず前に/をつけ""で囲う or 後ろに _path が必須-->
+      <!-- routeの"get signup"から新たなコントローラーアクション指示が飛ぶ -->
       <!-- btn-lg:btn-slarge, btn-primary:btn青色 -->
       <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
     </div>

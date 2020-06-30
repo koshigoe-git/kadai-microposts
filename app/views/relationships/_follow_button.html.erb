@@ -1,0 +1,22 @@
+<% unless current_user == user %>
+
+  <% if current_user.following?(user) %>
+  <!-- unfollow button method -->
+  <!-- フォームでPOST以外のメソッドを使用する場合method: :deleteのように指定(=relationships#destroyへフォームデータが渡される）-->
+  <!-- hidden によって user.id を渡す -->
+    <%= form_with(model: current_user.relationships.find_by(follow_id: user.id), local: true, method: :delete) do |f| %>
+      <%= hidden_field_tag :follow_id, user.id %>
+      <%= f.submit "unfollow", class: 'btn btn-danger btn-block' %>
+    <% end %>
+
+  <% else %>
+  <!-- follow button method(this is displayed if the user doesn't follow ) -->
+    <%= form_with(model: current_user.relationships.build, local: true) do |f| %>
+      <!-- this code creates <input type="hidden" name="follow_id" value="ユーザの id"> -->
+      <!-- type="hidden" はユーザに見せないフォームの隠しデータとなる -->
+      <%= hidden_field_tag :follow_id, user.id %>
+      <%= f.submit "Follow", class: 'btn btn-primary btn-block' %>
+    <% end %>
+  <% end %>
+
+<% end %>
