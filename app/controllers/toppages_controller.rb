@@ -7,7 +7,7 @@ class ToppagesController < ApplicationController
       @micropost = current_user.microposts.build
       
       #現在のuserのmicroposts（全ツイート）を降順で取得
-      @microposts = current_user.microposts.order(id: :desc).page(params[:page])
+      @microposts = current_user.feed_microposts.order(id: :desc).page(params[:page])
     end
   end
 end
