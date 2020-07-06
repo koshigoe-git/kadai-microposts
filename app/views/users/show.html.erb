@@ -23,10 +23,11 @@
       <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= "active" if current_page?(user_path(@user)) %>">Microposts <span class="badge badge-secondary"><%= @count_microposts %></span></a></li>
       <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followings_user_path(@user)) %>">Followings  <span class="badge badge-secondary"><%= @count_followings %></span></a></li>
       <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followers_user_path(@user)) %>">Followers  <span class="badge badge-secondary"><%= @count_followers %></span></a></li>
+      <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(likes_user_path(@user)) %>">likes  <span class="badge badge-secondary"><%= @count_favorites %></span></a></li>
     </ul>
     <!-- 前半：microposts/_microposts.html.erbを出力 -->
     <!-- 後半：@microposts を変数 microposts に代入 -->
-    <!-- 代入することによって、_microposts.html.erb 内で @microposts の値を変数 microposts として使用できる -->
+    <!-- 代入することによって、_microposts.html.erb 内で users#showで定義した@micropostsの値を変数micropostsとして使用可能 -->
     <%= render "microposts/microposts", microposts: @microposts %>
   </div>
 

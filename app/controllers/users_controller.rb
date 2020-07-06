@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   #index,showアクションの前は必ずログイン要求（Appコントローラーで定義）
-  before_action :require_user_logged_in, only: [:index, :show, :followings, :followers]
+  before_action :require_user_logged_in, only: [:index, :show, :followings, :followers, :likes]
   
   def index #一覧ページでのメソッド（定義）
   #page(params[:page]).per(25):ページネーションを適用
@@ -40,6 +40,7 @@ class UsersController < ApplicationController
     end
   end
   
+  #フォロー／フォロワー一覧表示
   def followings
     @user = User.find(params[:id])
     @followings = @user.followings.page(params[:page])
@@ -50,6 +51,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @followers = @user.followers.page(params[:page])
     counts(@user)
+  end
+
+  #お気に入り一覧表示
+  def likes
+    @user = User.find(params[:id])
+    @favorite_microposts = @user.favorite_microposts.page(params[:page])
+    #counts(@user)
   end
   
   private

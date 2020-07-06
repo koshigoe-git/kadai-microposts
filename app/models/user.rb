@@ -27,6 +27,10 @@ class User < ApplicationRecord
   #「自分をフォローしているUser達」
   has_many :followers, through: :reverses_of_relationship, source: :user
 
+  has_many :favorites
+  #favorite_microposts等の命名は自由だが、model名をうまく使った方がわかりやすい
+  has_many :favorite_microposts, through: :favorites, source: :micropost
+
   #フォロー／アンフォローの実行メソッド。
   #フォロー／アンフォローとは、中間テーブル(relationships)のレコードを保存／削除すること。
   
@@ -47,6 +51,8 @@ class User < ApplicationRecord
     #もしrelationship（フォロー）していたら、削除する
     relationship.destroy if relationship
   end
+  
+  #既にフォローしているか確認するメソッド
   #self.followings（自分がフォローしているユーザー）によりフォローしているUser達を取得
   #include?(other_user) によって other_user が含まれていないかを確認している。
   #含まれている場合には、true を返し、含まれていない場合には、false を返す。
@@ -60,6 +66,23 @@ class User < ApplicationRecord
   #最後に、 Micropost.where(user_id: フォローユーザ + 自分自身) となる Micropost を全て取得している。
   def feed_microposts
     Micropost.where(user_id: self.following_ids + [self.id])
+  end
+  
+  #お気に入りは自分自身の投稿もして良いので、フォローのようにunlessメソッドは不要
+  def favorite(micropost)
+      self.favorites.find_or_create_by(micropost_id: micropost.id)
+  end
+
+  def unfavorite(micropost)
+    favorite = self.favorites.find_by(micropost_id: micropost.id)
+    favorite.destroy if favorite
+  end
+  #self.favorite_microposts(自分がお気に入りしている投稿)により、お気に入りのMicropost達を取得
+  #include?に既にフォローしているか確認するメソッド
+  #よってお気に入りにしようとしているmicropostが既に含まれているか確認ししている
+  #含まれている場合には、true を返し、含まれていない場合には、false を返す。
+  def favorite_micropost?(micropost)
+    self.favorite_microposts.include?(micropost)
   end
   
 end

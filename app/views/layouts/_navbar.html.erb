@@ -18,6 +18,8 @@
             <li class="dropdown-item"><%= link_to "my profile", user_path(current_user) %></li>
             <li class="dropdown-divider"></li>
             <li class="dropdown-item"><%= link_to "Logout", logout_path, method: :delete %></li>
+            <li class="dropdown-divider"></li>
+            <li class="dropdown-item"><%= link_to "myfavorite_microposts", likes_user_path(current_user) %></li>
           </ul>
         </li>
         <% else %>

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     member do
       get :followings
       get :followers
+      get :likes
     end
   end
   #micropostsコントローラーのresourcesは作成、削除のコントローラーのみ
@@ -24,4 +25,5 @@ Rails.application.routes.draw do
   #ログインユーザがユーザをフォロー／アンフォローできるようにするルーティング
   #中間テーブルなので、indexやshowは不要。viewでフォローボタンを設置
   resources :relationships, only: [:create, :destroy]
+  resources :favorites, only: [:create, :destroy]
 end

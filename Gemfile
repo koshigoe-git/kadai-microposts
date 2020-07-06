@@ -56,3 +56,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #ページネーション追加
 gem "kaminari"
+
+#デバッガと呼ばれる、バグ（プログラミングのミス）を修正するための支援ツール
+gem 'pry-byebug', group: :development

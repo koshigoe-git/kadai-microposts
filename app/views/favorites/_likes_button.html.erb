@@ -1,0 +1,15 @@
+  <!-- 現在のユーザーがお気に入り登録しようとしている(micropost)がすでに登録してあるか(=favorite_micropost?)-->
+  <% if current_user.favorite_micropost?(micropost) %>
+    <!-- tureなら既にお気に入り登録されているはずなので、unfavorite button methodを表示 -->
+    <!-- formでPOST以外のメソッドを使用する場合method: :deleteのように指定(=favorites#destroyへフォームデータが渡される）-->
+    <%= form_with(model: current_user.favorites.find_by(micropost_id: micropost.id), local: true, method: :delete) do |f| %>
+      <%= hidden_field_tag :micropost_id, micropost.id %>
+      <%= f.submit 'Unfavorite', class: 'btn btn-danger btn-block' %>
+    <% end %>
+  <% else %>
+    <!-- falseならまだお気に入り登録されていないので、favorite button methodを表示 -->
+    <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
+      <%= hidden_field_tag :micropost_id, micropost.id %>
+      <%= f.submit 'Favorite', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  <% end %>

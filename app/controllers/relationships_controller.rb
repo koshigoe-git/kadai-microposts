@@ -3,6 +3,7 @@ class RelationshipsController < ApplicationController
 
   def create
     user = User.find(params[:follow_id])
+    #5行目で定義したuserが7行目の(user)に引数として入る
     current_user.follow(user)
     flash[:success] = 'ユーザをフォローしました。'
     #same as "/users/:id"(users#show)
