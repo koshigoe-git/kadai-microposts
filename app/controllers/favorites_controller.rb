@@ -6,7 +6,7 @@ class FavoritesController < ApplicationController
     #favorite(micropost)はUserModelで作成したメソッド
     current_user.favorite(micropost)
     flash[:success] = 'お気に入り登録をしました。'
-    #same as "/users/:id"(users#show)
+    #toppage
     redirect_to root_url
   end
 
