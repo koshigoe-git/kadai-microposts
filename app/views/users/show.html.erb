@@ -14,7 +14,8 @@
         <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
     </div>
-    <%= render "relationships/follow_button", user: @user %>
+    <%= render 'relationships/follow_button', user: @user %>
+    
   </aside>
 
   <div class="col-sm-8">
@@ -28,7 +29,7 @@
     <!-- 前半：microposts/_microposts.html.erbを出力 -->
     <!-- 後半：@microposts を変数 microposts に代入 -->
     <!-- 代入することによって、_microposts.html.erb 内で users#showで定義した@micropostsの値を変数micropostsとして使用可能 -->
-    <%= render "microposts/microposts", microposts: @microposts %>
+    <%= render 'microposts/microposts', microposts: @microposts %>
     
   </div>
 

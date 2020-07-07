@@ -6,7 +6,7 @@
   <!-- hidden によって user.id を渡す -->
     <%= form_with(model: current_user.relationships.find_by(follow_id: user.id), local: true, method: :delete) do |f| %>
       <%= hidden_field_tag :follow_id, user.id %>
-      <%= f.submit "unfollow", class: 'btn btn-danger btn-block' %>
+      <%= f.submit "nfollow", class: 'btn btn-danger btn-block' %>
     <% end %>
 
   <% else %>
