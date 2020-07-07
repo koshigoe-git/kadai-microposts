@@ -59,3 +59,8 @@ gem "kaminari"
 
 #デバッガと呼ばれる、バグ（プログラミングのミス）を修正するための支援ツール
 gem 'pry-byebug', group: :development
+
+#Heroku用の設定
+group :production do
+  gem 'pg', '>= 0.18', '< 2.0'
+end
